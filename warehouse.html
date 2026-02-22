@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse - HVAC IMS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation (similar to other pages) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html"><i class="bi bi-fan"></i> HVAC IMS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="inventoryDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-box-seam"></i> Inventory
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="raw-materials.html">Raw Materials</a></li>
+                            <li><a class="dropdown-item" href="finished-goods.html">Finished Goods</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="transactions.html">Transactions</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="warehouse.html"><i class="bi bi-building"></i> Warehouse</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reports.html"><i class="bi bi-clipboard-data"></i> Reports</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="mastersDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-gear"></i> Masters
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="items.html">Items</a></li>
+                            <li><a class="dropdown-item" href="locations.html">Locations</a></li>
+                            <li><a class="dropdown-item" href="users.html">Users</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i> ABCD (Store Manager)
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#profile"><i class="bi bi-person"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="#settings"><i class="bi bi-gear"></i> Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../login.html"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-2 col-md-3 d-none d-md-block sidebar">
+                <div class="list-group list-group-flush">
+                    <a href="../index.html" class="list-group-item list-group-item-action"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
+                    <a href="raw-materials.html" class="list-group-item list-group-item-action"><i class="bi bi-box me-2"></i> Raw Materials</a>
+                    <a href="finished-goods.html" class="list-group-item list-group-item-action"><i class="bi bi-check-square me-2"></i> Finished Goods</a>
+                    <a href="transactions.html" class="list-group-item list-group-item-action"><i class="bi bi-arrow-left-right me-2"></i> Transactions</a>
+                    <a href="warehouse.html" class="list-group-item list-group-item-action active"><i class="bi bi-building me-2"></i> Warehouse</a>
+                    <a href="reports.html" class="list-group-item list-group-item-action"><i class="bi bi-clipboard-data me-2"></i> Reports</a>
+                    <div class="list-group-item"><small class="text-muted">MASTERS</small></div>
+                    <a href="items.html" class="list-group-item list-group-item-action"><i class="bi bi-tags me-2"></i> Items</a>
+                    <a href="locations.html" class="list-group-item list-group-item-action"><i class="bi bi-geo-alt me-2"></i> Locations</a>
+                    <a href="users.html" class="list-group-item list-group-item-action"><i class="bi bi-people me-2"></i> Users</a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-10 col-md-9 ms-sm-auto px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Warehouse Management</h1>
+                    <button type="button" class="btn btn-sm btn-primary" onclick="showAddWarehouseModal()">
+                        <i class="bi bi-plus-circle"></i> Add Warehouse
+                    </button>
+                </div>
+
+                <!-- Warehouse Cards -->
+                <div class="row" id="warehouseCards">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+
+                <!-- Warehouse Details -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="bi bi-building"></i> Warehouse Details
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Warehouse</th>
+                                                <th>Code</th>
+                                                <th>Area</th>
+                                                <th>Capacity</th>
+                                                <th>Manager</th>
+                                                <th>Items</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="warehouseTableBody">
+                                            <!-- Data will be populated by JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-light border-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6"><span class="text-muted">HVAC Filter Manufacturing IMS &copy; 2026</span></div>
+                <div class="col-md-6 text-end"><span class="text-muted">v1.0.0 | Last updated: Feb 22, 2026</span></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/warehouse.js"></script>
+</body>
+</html>

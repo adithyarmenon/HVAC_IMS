@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raw Materials - HVAC IMS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <!-- Navigation Bar (Exactly like transactions page) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-fan"></i> HVAC IMS
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Inventory</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item active" href="raw-materials.html">Raw Materials</a></li>
+                            <li><a class="dropdown-item" href="finished-goods.html">Finished Goods</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="transactions.html">Transactions</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="warehouse.html">Warehouse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reports.html">Reports</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Masters</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="items.html">Items</a></li>
+                            <li><a class="dropdown-item" href="locations.html">Locations</a></li>
+                            <li><a class="dropdown-item" href="users.html">Users</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i> ABCD (Store Manager)
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-2 col-md-3 d-none d-md-block sidebar">
+                <div class="list-group list-group-flush">
+                    <a href="../index.html" class="list-group-item list-group-item-action">
+                        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                    </a>
+                    <a href="raw-materials.html" class="list-group-item list-group-item-action active">
+                        <i class="bi bi-box me-2"></i> Raw Materials
+                    </a>
+                    <a href="finished-goods.html" class="list-group-item list-group-item-action">
+                        <i class="bi bi-check-square me-2"></i> Finished Goods
+                    </a>
+                    <a href="transactions.html" class="list-group-item list-group-item-action">
+                        <i class="bi bi-arrow-left-right me-2"></i> Transactions
+                    </a>
+                    <a href="warehouse.html" class="list-group-item list-group-item-action">
+                        <i class="bi bi-building me-2"></i> Warehouse
+                    </a>
+                    <a href="reports.html" class="list-group-item list-group-item-action">
+                        <i class="bi bi-clipboard-data me-2"></i> Reports
+                    </a>
+                    <div class="list-group-item">
+                        <small class="text-muted">MASTERS</small>
+                    </div>
+                    <a href="items.html" class="list-group-item list-group-item-action">
+                        <i class="bi bi-tags me-2"></i> Items
+                    </a>
+                    <a href="locations.html" class="list-group-item list-group-item-action">
+                        <i class="bi bi-geo-alt me-2"></i> Locations
+                    </a>
+                    <a href="users.html" class="list-group-item list-group-item-action">
+                        <i class="bi bi-people me-2"></i> Users
+                    </a>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="card mt-4">
+                    <div class="card-header bg-primary text-white">
+                        <i class="bi bi-lightning-charge"></i> Quick Actions
+                    </div>
+                    <div class="card-body p-2">
+                        <button class="btn btn-sm btn-success w-100 mb-2" onclick="showNewTransactionModal('inward')">
+                            <i class="bi bi-box-arrow-in-down"></i> Inward
+                        </button>
+                        <button class="btn btn-sm btn-danger w-100 mb-2" onclick="showNewTransactionModal('outward')">
+                            <i class="bi bi-box-arrow-up"></i> Outward
+                        </button>
+                        <button class="btn btn-sm btn-info w-100" onclick="showNewTransactionModal('transfer')">
+                            <i class="bi bi-arrow-left-right"></i> Transfer
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Content -->
+            <div class="col-md-10 p-4">
+                <!-- Header with Actions -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1 class="h2">Raw Materials Inventory</h1>
+                    <div>
+                        <button class="btn btn-outline-secondary me-2" onclick="exportToCSV()">
+                            <i class="bi bi-download"></i> Export CSV
+                        </button>
+                        <button class="btn btn-outline-secondary me-2" onclick="printTable()">
+                            <i class="bi bi-printer"></i> Print
+                        </button>
+                        <button class="btn btn-primary" onclick="showAddMaterialModal()">
+                            <i class="bi bi-plus-circle"></i> New Material
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter Section (like transactions page) -->
+                <div class="filter-section">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Search by item, SKU...</label>
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search...">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Warehouse</label>
+                            <select class="form-select" id="warehouseFilter">
+                                <option value="">All Warehouses</option>
+                                <option value="Main Warehouse">Main Warehouse</option>
+                                <option value="Chemicals Store">Chemicals Store</option>
+                                <option value="Packaging Area">Packaging Area</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Status</label>
+                            <select class="form-select" id="statusFilter">
+                                <option value="">All Status</option>
+                                <option value="good">Good</option>
+                                <option value="low">Low</option>
+                                <option value="critical">Critical</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button class="btn btn-outline-secondary w-100" onclick="clearFilters()">
+                                <i class="bi bi-x-circle"></i> Clear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Materials Table -->
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-box"></i> Raw Materials List</span>
+                        <span class="badge bg-primary" id="itemCount">6 items</span>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>SKU</th>
+                                        <th>Name</th>
+                                        <th>Current Stock</th>
+                                        <th>Unit</th>
+                                        <th>Min Level</th>
+                                        <th>Max Level</th>
+                                        <th>Location</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="materialsTableBody">
+                                    <tr>
+                                        <td><strong>RM-FM-008</strong></td>
+                                        <td>Filter Media MERV 8</td>
+                                        <td>450</td>
+                                        <td>rolls</td>
+                                        <td>100</td>
+                                        <td>500</td>
+                                        <td>Main Warehouse</td>
+                                        <td><span class="badge bg-success">Good</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
+                                            <button class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></button>
+                                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>RM-FM-013</strong></td>
+                                        <td>Filter Media MERV 13</td>
+                                        <td>50</td>
+                                        <td>rolls</td>
+                                        <td>100</td>
+                                        <td>500</td>
+                                        <td>Main Warehouse</td>
+                                        <td><span class="badge bg-danger">Critical</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
+                                            <button class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></button>
+                                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>RM-AC-001</strong></td>
+                                        <td>Activated Carbon</td>
+                                        <td>25</td>
+                                        <td>kg</td>
+                                        <td>50</td>
+                                        <td>200</td>
+                                        <td>Chemicals Store</td>
+                                        <td><span class="badge bg-warning">Low</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></button>
+                                            <button class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></button>
+                                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination (like transactions page) -->
+                <nav class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+     <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-light border-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="text-muted">HVAC Filter Manufacturing IMS &copy; 2026</span>
+                </div>
+                <div class="col-md-6 text-end">
+                    <span class="text-muted">v1.0.0 | Last updated: Feb 22, 2026</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showNewTransaction(type) {
+            alert(`New ${type} transaction form would open`);
+        }
+        
+        function exportToCSV() {
+            alert('Exporting to CSV...');
+        }
+        
+        function printTable() {
+            window.print();
+        }
+        
+        function showAddMaterialModal() {
+            alert('Add material form would open');
+        }
+        
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('warehouseFilter').value = '';
+            document.getElementById('statusFilter').value = '';
+        }
+    </script>
+    <script>
+    // Quick Actions Handler
+    function handleQuickAction(action) {
+        console.log(`Quick Action clicked: ${action}`);
+        
+        // Store the action type for the modal
+        sessionStorage.setItem('quickAction', action);
+        
+        // Show different behaviors based on action
+        switch(action) {
+            case 'inward':
+                showNewTransactionModal('inward');
+                break;
+            case 'outward':
+                showNewTransactionModal('outward');
+                break;
+            case 'transfer':
+                showNewTransactionModal('transfer');
+                break;
+            default:
+                alert('Action not recognized');
+        }
+    }
+    
+    // Function to show transaction modal
+    function showNewTransactionModal(type) {
+        // Check if user is logged in
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+        
+        // You can customize this based on your needs
+        const modalTitle = type.charAt(0).toUpperCase() + type.slice(1);
+        
+        // For demo purposes - replace with actual modal logic
+        alert(`Opening ${modalTitle} Transaction Form`);
+        
+        // In a real app, you would open a modal here
+        // Example: 
+        // const modal = new bootstrap.Modal(document.getElementById('transactionModal'));
+        // modal.show();
+    }
+    
+    // Optional: Add keyboard shortcut (Alt+I for Inward, Alt+O for Outward, Alt+T for Transfer)
+    document.addEventListener('keydown', function(e) {
+        if (e.altKey) {
+            switch(e.key) {
+                case 'i':
+                case 'I':
+                    e.preventDefault();
+                    handleQuickAction('inward');
+                    break;
+                case 'o':
+                case 'O':
+                    e.preventDefault();
+                    handleQuickAction('outward');
+                    break;
+                case 't':
+                case 'T':
+                    e.preventDefault();
+                    handleQuickAction('transfer');
+                    break;
+            }
+        }
+    });
+</script>
+</body>
+</html>
