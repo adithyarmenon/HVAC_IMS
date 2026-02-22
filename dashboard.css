@@ -1,0 +1,151 @@
+/* Dashboard specific styles */
+
+.dashboard-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.quick-action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 100px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    text-decoration: none;
+    color: var(--dark-color);
+}
+
+.quick-action-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.quick-action-btn i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.stock-alert {
+    border-left: 4px solid var(--warning-color);
+    background-color: rgba(255, 193, 7, 0.1);
+}
+
+.stock-critical {
+    border-left: 4px solid var(--danger-color);
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.recent-activity {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.activity-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.activity-inward {
+    background-color: rgba(25, 135, 84, 0.1);
+    color: var(--success-color);
+}
+
+.activity-outward {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--danger-color);
+}
+
+.activity-transfer {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: var(--primary-color);
+}
+
+/* Chart container styling */
+.chart-container {
+    position: relative;
+    height: 250px;
+    width: 100%;
+}
+
+/* Dashboard summary numbers */
+.summary-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.summary-label {
+    font-size: 0.875rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Filter types visualization */
+.filter-type-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.filter-type-panel {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.filter-type-bag {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.filter-type-pocket {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+}
+
+.filter-type-vbank {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+.filter-type-cartridge {
+    background-color: #fce4ec;
+    color: #c2185b;
+}
+.dashboard-page .container-fluid {
+    background-color: #cdf1ed;
+}
